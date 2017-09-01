@@ -1,0 +1,41 @@
+﻿
+em {
+    font-size: x-small;
+    font-style: italic;
+}
+
+.container {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.panel-header {
+    background-color: tan;
+    height: 50px;
+    font-size: large;
+}
+
+.list-unstyle {
+    list-style: none;
+}
+
+.hand-finisher-true::after {
+    content: '\2665';
+    font-size: large;
+    padding-left: 5px;
+    color: tomato;
+}
+
+
+.hand-row {
+    border-bottom: 1px solid rgba(0,0,0,0.30);
+}
+
+.hands > .hand-row:nth-child(even) {
+    background-color: rgba(0,0,0,0.10);
+}
+
+.panel-footer {
+    border-top: 2px solid rgba(0,0,0,0.30);
+    background-color: rgba(72, 0, 255, .40);
+}

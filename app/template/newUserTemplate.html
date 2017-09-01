@@ -1,0 +1,28 @@
+﻿<md-dialog aria-label="Add User" layout-xs>
+    <form ng-cloak name="userFrm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add User</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="row">
+            <md-input-container class="md-block" flex>
+                <label>Name</label>
+                <input type="text" maxlength="3" ng-model="addUsrCtrl.userName" ng-required="true" />
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="center end">
+            <span flex></span>
+            <md-button ng-click="addUsrCtrl.cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-click="userFrm.$valid && addUsrCtrl.done()">
+                Done
+            </md-button>
+            <md-button type="submit" ng-click="userFrm.$valid && addUsrCtrl.addMoreUser()">
+                Add More
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

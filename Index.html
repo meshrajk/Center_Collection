@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Center Collection</title>
+    <!-- Angular Material requires Angular.js Libraries --> <!-- Angular Material Library -->
+    <!-- AngularJS Material CSS now available via Google CDN; version 1.1.4 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+    <link href="Content/centerCollection.css" rel="stylesheet" />
+</head>
+<body ng-app="CenterCollection">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-aria.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="app/CenterCollection.js"></script>
+    <script src="app/controller/CollectionController.js"></script>
+    <!-- AngularJS Material Dependencies -->
+    <div class="container md-container" flex flex-align="center center" ng-controller="CollectionController">
+        <md-select ng-model="game">
+            <md-option ng-repeat="gm in games">{{gm.gameName}}</md-option>
+        </md-select>
+        <md-button class="md-primary" ng-show="!players || players.length ==0" ng-click="startNewGame()">Start New Game</md-button>
+        <md-button class="md-primary" ng-show="players.length >0" ng-click="restartNewGame()">Restart New Game</md-button>
+        <md-button class="md-primary" ng-click="handOver()">Hand Over</md-button>
+        <div class="panel" md-whiteframe="3" ng-if="players.length>0">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    {{game.gameName}}
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="panel-header" layout="row" layout-align="start center" layout-padding layout-xs>
+                <div ng-repeat="player in players" flex="20">{{player.name}}</div>
+            </div>
+            <div class="panel-body">
+                <div layout="column" layout-align="start center" class="hands" layout-padding>
+                    <div class="hand-row" ng-repeat="hand in hands" layout="row" layout-align="start center" layout-padding flex="100" style="width:100%">
+                        <div ng-repeat="p in hand" flex="20"><span class="hand-finisher-{{p.finisher}}">{{p.pointThisRound}}</span><span><em>|{{p.khane}}</em></span></div>
+                        <div flex="20"><md-button ng-click="removeHand(hand)">Remove</md-button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div layout="row" layout-align="start center" layout-padding ng-if="hands.length>0">
+                    <div ng-repeat="player in players" flex="20">{{player.totalPoint}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

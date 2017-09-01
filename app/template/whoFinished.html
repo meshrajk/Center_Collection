@@ -1,0 +1,39 @@
+﻿<md-dialog aria-label="Add points" layout-xs>
+    <form ng-cloak name="gmOvrFrm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Who finished?</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column" layout-margin style="max-width:800px;max-height:810px; ">
+            <md-input-container class="md-block">
+                <p>Select who finished: <span class="radioValue">{{gmOvrCtrl.finisher}}</span> </p>
+                <md-radio-group ng-model="gmOvrCtrl.finisher">
+                    <md-radio-button ng-repeat="player in gmOvrCtrl.players" value="{{player.name}}" class="md-primary">{{player.name}}</md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+            <div ng-repeat="player in gmOvrCtrl.players" layout="column">
+                <div class="md-block" layout="row" layout-padding>
+                    <md-input-container>
+                        <md-checkbox ng-model="player.herena" ng-disabled="player.name == gmOvrCtrl.finisher"></md-checkbox><span>Maal Herena</span>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>{{player.name}} kati khane?</label>
+                        <input type="number" ng-disabled="player.herena" ng-model="player.khane" max="100" />
+                    </md-input-container>
+
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="center end">
+            <span flex></span>
+            <md-button ng-click="gmOvrCtrl.cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-click="gmOvrCtrl.done()">
+                Done
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
